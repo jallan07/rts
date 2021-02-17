@@ -8,7 +8,7 @@ const RecentSearches = () => {
   return (
     <Card className="py-auto px-4 text-center">
       <Card.Body>
-        <h6>Recent Searches</h6>
+        <h6 className="my-3">Recent Searches</h6>
         {/* map through the recent searches; if any exist, display them, else display ""..." */}
         {recentSearches.length > 0 ? (
           recentSearches.map((search) => (
