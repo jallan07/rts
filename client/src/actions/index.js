@@ -2,3 +2,6 @@
 const ADD_SEARCH = () => {
   return { type: 'ADD_SEARCH' };
 };
+const SEARCH_RESULTS = () => {
+  return { type: 'SEARCH_RESULTS' };
+};

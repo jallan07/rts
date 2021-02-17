@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+// utilities
 import { Card, Button, Form } from 'react-bootstrap';
 import API from '../utils/API';
 import { v4 as uuidv4 } from 'uuid';
-
+//components
+import RecentSearches from './RecentSearches';
+import SearchResults from './SearchResults';
+// bring in the globalized store so we can dispatch actions to it
 import store from '../store';
 
 const SearchBar = () => {
@@ -15,6 +19,7 @@ const SearchBar = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
+    // dispatch the action
     store.dispatch({
       type: 'ADD_SEARCH',
       id: uuidv4(),
@@ -23,35 +28,42 @@ const SearchBar = () => {
 
     // make the API call using the user's query
     API.getSearchResults(query).then((data) => {
-      console.log(data.data.hits);
+      store.dispatch({
+        type: 'SEARCH_RESULTS',
+        results: data.data.hits
+      });
     });
   };
 
   return (
-    <Card className="py-auto px-4">
-      <Card.Body>
-        <h4 className="text-center mb-4">Hacker News Search</h4>
-        <Form>
-          <Form.Group id="search">
-            <Form.Control
-              type="text"
-              className="text-center"
-              placeholder="Enter a search phrase..."
-              onChange={onChange}
-              required
-            ></Form.Control>
-          </Form.Group>
-          <Button
-            className="w-100"
-            type="submit"
-            onClick={onSubmit}
-            variant="outline-success"
-          >
-            Search The Database
-          </Button>
-        </Form>
-      </Card.Body>
-    </Card>
+    <div>
+      <Card className="py-auto px-4">
+        <Card.Body>
+          <h4 className="text-center mb-4">Hacker News Search</h4>
+          <Form>
+            <Form.Group id="search">
+              <Form.Control
+                type="text"
+                className="text-center"
+                placeholder="Enter a search phrase..."
+                onChange={onChange}
+                required
+              ></Form.Control>
+            </Form.Group>
+            <Button
+              className="w-100"
+              type="submit"
+              onClick={onSubmit}
+              variant="outline-success"
+            >
+              Search The Database
+            </Button>
+          </Form>
+        </Card.Body>
+      </Card>
+      <RecentSearches />
+      <SearchResults />
+    </div>
   );
 };
 
