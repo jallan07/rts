@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 const RecentSearches = () => {
   const recentSearches = useSelector((state) => state.recentSearches);
   return (
-    <Card className="py-auto px-4">
+    <Card className="py-auto px-4 text-center">
       <Card.Body>
         <h6>Recent Searches</h6>
         {/* map through the recent searches; if any exist, display them, else display ""..." */}
