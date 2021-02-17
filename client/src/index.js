@@ -1,19 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
-import reducer from './reducers';
 
-// redux store
-import { createStore } from 'redux';
-const store = createStore(reducer);
+// redux
+import store from './store';
+import { Provider } from 'react-redux';
 
 // display in console
 store.subscribe(() => console.log(store.getState()));
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  // provider gives state access to the entire app
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );

@@ -1,4 +1,4 @@
 // the actions describe what we want to do in simple terms called types
-const SEARCH = () => {
-  return { type: 'SEARCH' };
+const ADD_SEARCH = () => {
+  return { type: 'ADD_SEARCH' };
 };

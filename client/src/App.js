@@ -1,10 +1,18 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
+// components
+import SearchBar from './components/SearchBar';
 
 function App() {
   return (
-    <div>
-      <p>Hello</p>
-    </div>
+    <Container
+      className="d-flex align-items-center justify-content-center"
+      style={{ minHeight: '100vh' }}
+    >
+      <div className="w-100" style={{ maxWidth: '600px' }}>
+        <SearchBar />
+      </div>
+    </Container>
   );
 }
 
